@@ -20,8 +20,7 @@
                                         <th>Type</th>
                                         <th>Location</th>
                                         <th>Cost</th>
-                                        <th>Place</th>
-                                        <th>menu</th>
+                                      
 
                                     </tr>
                                     </thead>
@@ -34,7 +33,7 @@
                                         <td><?php echo $place['type'] ?></td>
                                         <td><?php echo $place['location'] ?></td>
                                         <td><?php echo $place['cost'] ?></td>
-                                        <td><?php echo $place['place'] ?></td>
+
 
                                         <?php $menucheck = 0;
                                         foreach ($allmenu as $single_menu){

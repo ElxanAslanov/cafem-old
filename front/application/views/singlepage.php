@@ -159,12 +159,8 @@
 			<div id="listing-location" class="listing-section">
 				<h3 class="listing-desc-headline margin-top-60 margin-bottom-30">Location</h3>
 
-				<div id="singleListingMap-container">
-					<div id="singleListingMap" data-latitude="40.70437865245596" data-longitude="-73.98674011230469" data-map-icon="im im-icon-Hamburger"></div>
-					<a href="#" id="streetView">Street View</a>
-				</div>
+                <iframe src="https://www.google.com/maps/embed?pb=<?php echo $cafe['place'] ?>" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
 			</div>
-
 
 
 <?php $this->load->view('includes/footer') ?>
