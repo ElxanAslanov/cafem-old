@@ -24,6 +24,7 @@ class Cafe extends CI_Controller {
     {
         $this->page = 'cafe_add';
         $data['types'] = $this->Cafe_model->cafe_type();
+        $data['locts'] = $this->Cafe_model->location();
         $this->load->view("$this->loct/index",$data);
     }
 
@@ -32,6 +33,7 @@ class Cafe extends CI_Controller {
 
        $name         =     $this->input->post('name');
        $type         =     $this->input->post('type');
+       $type1         =     $this->input->post('type1');
        $location     =     $this->input->post('location');
        $cost         =     $this->input->post('cost');
        $place        =     $this->input->post('place');
@@ -50,6 +52,7 @@ class Cafe extends CI_Controller {
             $data = array(
                 "name" => $name,
                 "type" => $type,
+                "cafe_type" => $type1,
                 "location" => $location,
                 "cost" => $cost,
                 "place" => $place,
@@ -144,6 +147,8 @@ class Cafe extends CI_Controller {
         $data['getNew'] = $this->Cafe_model->getNew(array(
             "id" => $id,
         ));
+        $data['types'] = $this->Cafe_model->cafe_type();
+        $data['locts'] = $this->Cafe_model->location();
 
         $this->load->view("$this->loct/index", $data);
     }
@@ -152,6 +157,7 @@ class Cafe extends CI_Controller {
     {
         $name         =     $this->input->post('name');
         $type         =     $this->input->post('type');
+        $type1         =     $this->input->post('type1');
         $location     =     $this->input->post('location');
         $cost         =     $this->input->post('cost');
         $place        =     $this->input->post('place');
@@ -173,6 +179,7 @@ class Cafe extends CI_Controller {
                 $data = array(
                     "name" => $name,
                     "type" => $type,
+                    "cafe_type" => $type1,
                     "location" => $location,
                     "cost" => $cost,
                     "place" => $place,
@@ -187,11 +194,11 @@ class Cafe extends CI_Controller {
 
             } else {
                 $this->session->set_userdata('err', 'Bosluq buraxmayin');
-                redirect(base_url('Cafe/update'));
+                redirect(base_url('Cafe/update/'.$id));
             }
         }else{
             $this->session->set_userdata('err', 'Sekil Yuklenmedi');
-            redirect(base_url('Cafe/update'));
+            redirect(base_url('Cafe/update'.$id));
         }
 
 

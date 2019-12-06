@@ -43,6 +43,10 @@ class Cafe_model extends CI_Model{
     {
         return $this->db->order_by('id','ASC')->get('cafe_type')->result_array() ;
     }
+    public function location()
+    {
+        return $this->db->order_by('id','ASC')->get('location')->result_array() ;
+    }
     public function getNew($where = array()){
         return $this->db->where($where)->get('place')->row_array();
     }
