@@ -184,7 +184,7 @@
 
                             <!-- Image -->
                             <div class="listing-item-image">
-                                <img src="images/listing-item-01.jpg" alt="">
+                                <img src="<?php echo base_url("../uploads/cafe_gallery/".$cafe['image']) ?>" alt="">
                                 <span class="tag">Eat & Drink</span>
                             </div>
 

@@ -27,41 +27,19 @@
 
 						<div class="main-search-input-item">
                             <select data-placeholder="All Categories" class="chosen-select" >
-                                <option>Bütün kateqoriyalar</option>
-                                <option>Hezi Aslanov</option>
-                                <option>Ehmedli</option>
-                                <option>Xalqlar dostlugu</option>
-                                <option>Neftciler</option>
-                                <option>Q.Qarayev</option>
-                                <option>Koroglu</option>
-                                <option>Ulduz</option>
-                                <option>N.Nerimanov</option>
-                                <option>Genclik</option>
-                                <option>28 May</option>
-                                <option>Nizami</option>
-                                <option>Elmler Akademiyası</option>
-                                <option>İnsaatcilar</option>
-                                <option>20 Yanvar</option>
-                                <option>M.Ecemi</option>
-                                <option>Nesimi</option>
-                                <option>Azadlig</option>
-                                <option>Dernegul</option>
-                                <option>İceriseher</option>
-                                <option>Sahil</option>
-                                <option>Xetai</option>
-                                <option>Avtovagzal</option>
-                                <option>Bakmil</option>
+                                <option>Butun Eraziler</option>
+                                <?php foreach ($locts as $loct){ ?>
+                                <option><?php echo $loct['name'] ?></option>
+                                <?php } ?>
                             </select>
 						</div>
 
 						<div class="main-search-input-item">
 							<select data-placeholder="All Categories" class="chosen-select" >
-								<option>Bütün kateqoriyalar</option>
-								<option>Restoran</option>
-								<option>Lounge</option>
-								<option>Çayxana</option>
-								<option>Playstation</option>
-
+                                <option>Bütün kateqoriyalar</option>
+                                <?php foreach ($types as $type){ ?>
+								<option><?php echo $type['name'] ?></option>
+                                <?php } ?>
 							</select>
 						</div>
 
@@ -123,12 +101,13 @@
 			<div class="categories-boxes-container margin-top-5 margin-bottom-30">
 
 				<!-- Box -->
-				<a href="listings-list-with-sidebar.html" class="category-small-box">
-					<i class="im im-icon-Hamburger"></i>
-					<h4>Restoranlar</h4>
-					<span class="category-box-counter">12</span>
+<?php foreach ($types as $type){ ?>
+				<a href="<?php echo base_url("list/".$type['id']) ?>" class="category-small-box">
+					<i class="<?php echo $type['icon'] ?>"></i>
+					<h4><?php echo $type['name'] ?></h4>
+<!--					<span class="category-box-counter">12</span>-->
 				</a>
-
+<?php } ?>
 				<!-- Box -->
 				<a href="listings-list-with-sidebar.html" class="category-small-box">
 					<i class="im  im-icon-Sleeping"></i>

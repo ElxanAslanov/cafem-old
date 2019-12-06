@@ -5,17 +5,25 @@ class Home extends CI_Controller{
     {
         parent::__construct();
         $this->load->model('FrontModel');
+
     }
 
     public function index()
     {
         $_SESSION['page'] = 'home';
-        $this->load->view('home');
+        $data['types']=$this->FrontModel->get_desc("cafe_type");
+        $data['locts']=$this->FrontModel->get_desc("location");
+        $this->load->view('home',$data);
     }
 
     public function filter($type = null)
     {
-        $data['cafesss']=$this->FrontModel->getCafess();
+        if ($type){
+            $data['cafesss']=$this->FrontModel->getCafes($type);
+        }else{
+            $data['cafesss']=$this->FrontModel->getCafess();
+        }
+
         $this->load->view('list',$data);
     }
     public function add(){
@@ -33,12 +41,13 @@ class Home extends CI_Controller{
 
         foreach (array_slice($data['menu_t'],2)   as  $item){
 //            print_r('<br>');
-            if ($data['menu']['0'][$item] != 0) {
-                $data[$item] = $this->FrontModel->get_sub_menu($item, $data['menu']['0'][$item]);
+            if($data['menu']) {
+                if ($data['menu']['0'][$item] != 0) {
+                    $data[$item] = $this->FrontModel->get_sub_menu($item, $data['menu']['0'][$item]);
 
 //                print_r($data[$item]);
+                }
             }
-
         }
 
         $data['images'] = $this->FrontModel->get_gallery($id);
