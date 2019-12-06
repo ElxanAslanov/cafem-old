@@ -29,12 +29,13 @@ class Home extends CI_Controller{
 
         foreach (array_slice($data['menu_t'],2)   as  $item){
 //            print_r('<br>');
-            if ($data['menu']['0'][$item] != 0) {
-                $data[$item] = $this->FrontModel->get_sub_menu($item, $data['menu']['0'][$item]);
+            if($data['menu']) {
+                if ($data['menu']['0'][$item] != 0) {
+                    $data[$item] = $this->FrontModel->get_sub_menu($item, $data['menu']['0'][$item]);
 
 //                print_r($data[$item]);
+                }
             }
-
         }
 
         $data['images'] = $this->FrontModel->get_gallery($id);

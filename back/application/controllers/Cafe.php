@@ -29,6 +29,7 @@ class Cafe extends CI_Controller {
 
     public function add_action()
     {
+
        $name         =     $this->input->post('name');
        $type         =     $this->input->post('type');
        $location     =     $this->input->post('location');
@@ -37,20 +38,31 @@ class Cafe extends CI_Controller {
        $username     =     $this->input->post('username');
        $password  =    md5($this->input->post('password'));
 
+        $config["allowed_types"] = "jpg|jpeg|png";
+        $config["upload_path"]   = "../uploads/cafe_gallery/";
 
-       $data=array(
-           "name"=>$name,
-           "type"=>$type,
-           "location"=>$location,
-           "cost"=>$cost,
-           "place"=>$place,
-           "username"=>$username,
-           "password"=>$password,
+        $this->load->library("upload", $config);
 
+        $upload = $this->upload->do_upload("image");
+        // File upload
+        if ($upload) {
 
-       );
-       $this->Cafe_model->insertdata($data);
-       redirect(base_url("Cafe"));
+            $data = array(
+                "name" => $name,
+                "type" => $type,
+                "location" => $location,
+                "cost" => $cost,
+                "place" => $place,
+                "username" => $username,
+                "password" => $password,
+                'image' => $this->upload->data("file_name"),
+
+            );
+            $this->Cafe_model->insertdata($data);
+            redirect(base_url("Cafe"));
+        }else{
+            redirect(base_url("Cafe/cafe_add"));
+        }
     }
     public function delete($id)
     {
@@ -128,12 +140,12 @@ class Cafe extends CI_Controller {
     public function update($id)
     {
 
-
+        $this->page = 'cafe_update';
         $data['getNew'] = $this->Cafe_model->getNew(array(
             "id" => $id,
         ));
 
-        $this->load->view('cafe/cafe_update', $data);
+        $this->load->view("$this->loct/index", $data);
     }
 
     public function updateAct($id)
@@ -146,27 +158,41 @@ class Cafe extends CI_Controller {
         $username     =     $this->input->post('username');
         $password  =    md5($this->input->post('password'));
 
-        if (!empty($name) && !empty($location) && !empty($password) ){
 
-            $data = array(
-                "name"=>$name,
-                "type"=>$type,
-                "location"=>$location,
-                "cost"=>$cost,
-                "place"=>$place,
-                "username"=>$username,
-                "password"=>$password,
-            );
+        $config["allowed_types"] = "jpg|jpeg|png";
+        $config["upload_path"]   = "../uploads/cafe_gallery/";
 
-            $this->Cafe_model->update($id, $data);
-            $this->session->set_userdata('success', 'Emiliyyat Ugurlu!');
-            redirect(base_url("Cafe"));
+        $this->load->library("upload", $config);
 
+        $upload = $this->upload->do_upload("image");
+        // File upload
+        if ($upload) {
+
+            if (!empty($name) && !empty($location) && !empty($password)) {
+
+                $data = array(
+                    "name" => $name,
+                    "type" => $type,
+                    "location" => $location,
+                    "cost" => $cost,
+                    "place" => $place,
+                    "username" => $username,
+                    "password" => $password,
+                    'image' => $this->upload->data("file_name"),
+                );
+
+                $this->Cafe_model->update($id, $data);
+                $this->session->set_userdata('success', 'Emiliyyat Ugurlu!');
+                redirect(base_url("Cafe"));
+
+            } else {
+                $this->session->set_userdata('err', 'Bosluq buraxmayin');
+                redirect(base_url('Cafe/update'));
+            }
         }else{
-            $this->session->set_userdata('err','Bosluq buraxmayin');
+            $this->session->set_userdata('err', 'Sekil Yuklenmedi');
             redirect(base_url('Cafe/update'));
         }
-
 
 
     }

@@ -1,4 +1,4 @@
-<?php $this->load->view('includes/head') ?>
+
 
 <?php if($this->session->userdata('err')){ ?>
     <div class="alert alert-danger">
@@ -6,7 +6,7 @@
     </div>
 <?php } ?>
 
-
+    <div style="padding: 20px">
     <form action="<?php echo base_url("Cafe/updateAct/").$getNew["id"]?> " method="post" enctype="multipart/form-data">
         <label for="">Ad</label>
         <input type="text" name="name" class="form-control" placeholder="name" value="<?php echo $getNew["name"]?>"> <br>
@@ -20,9 +20,8 @@
         <input type="text" name="location" class="form-control" placeholder="location" value="<?php echo $getNew["location"]?>"> <br>
         <input type="text" name="cost" class="form-control" placeholder="cost" value="<?php echo $getNew["cost"]?>"> <br>
         <input type="text" name="place" class="form-control" placeholder="place" value="<?php echo $getNew["place"]?>"> <br>
-
+        <input type="file" name="image" class="form-control" placeholder="Choose your image"> <br>
 
         <button type="submit" class="btn btn-info">Update</button>
     </form>
-
-<?php $this->load->view('includes/foot') ?>
+    </div>

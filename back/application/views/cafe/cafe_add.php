@@ -17,6 +17,7 @@
     <input type="text" name="location" class="form-control" placeholder="location"> <br>
     <input type="text" name="cost" class="form-control" placeholder="cost"> <br>
     <input type="text" name="place" class="form-control" placeholder="place"> <br>
+    <input type="file" name="image" class="form-control" placeholder="Choose your image"> <br>
 
 
     <button type="submit" class="btn btn-info">Daxil Et</button>

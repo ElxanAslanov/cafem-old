@@ -103,6 +103,7 @@
 					<div class="pricing-list-container">
 						
 						<!-- Food List -->
+                        <?php if ($menu){ ?>
                         <?php foreach (array_slice($menu_t,2)   as  $sub){ if ($menu[0][$sub] != 0){ ?>
 
 						<h4><?php echo $sub ?></h4>
@@ -121,7 +122,7 @@
 						</ul>
 
 
-                        <?php } } ?>
+                        <?php } } } ?>
 
 						<!-- Food List -->
 
