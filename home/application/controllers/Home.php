@@ -29,6 +29,10 @@ class Home extends CI_Controller{
     public function add(){
         $this->load->view('addcafe');
     }
+    public function contactus(){
+        $this->load->view('contact');
+    }
+
     public function single($id){
         $data['menu']=$this->FrontModel->get_menu($id);
 //        print_r('<br>');
